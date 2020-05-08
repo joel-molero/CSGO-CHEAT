@@ -1,0 +1,8 @@
+﻿  CsgoCheat.cpp
+C:\Users\danie\OneDrive\Desktop\dani\..hacking\csgo\CsgoCheat\CsgoCheat.cpp(86,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\danie\OneDrive\Desktop\dani\..hacking\csgo\CsgoCheat\CsgoCheat.cpp(124,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\danie\OneDrive\Desktop\dani\..hacking\csgo\CsgoCheat\CsgoCheat.cpp(226,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\danie\OneDrive\Desktop\dani\..hacking\csgo\CsgoCheat\CsgoCheat.cpp(268,32): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\danie\OneDrive\Desktop\dani\..hacking\csgo\CsgoCheat\CsgoCheat.cpp(272,36): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\danie\OneDrive\Desktop\dani\..hacking\csgo\CsgoCheat\CsgoCheat.cpp(273,55): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+  CsgoCheat.vcxproj -> C:\Users\danie\OneDrive\Desktop\dani\..hacking\csgo\CsgoCheat\Debug\CsgoCheat.exe
