@@ -204,7 +204,7 @@ void NoFlash()
 
 }
 
-int findClosestEnemy(vector3d& final)
+int findClosestEnemy(vector3d* final)
 {
 	vector3d enemiesHead;
 	vector3d myHead;
@@ -216,27 +216,36 @@ int findClosestEnemy(vector3d& final)
 
 	double minDistance = 9999999;
 
-	
-	myHead.x = memory.readMem<float>(variables.localPlayer + hazedumper::netvars::m_dwBoneMatrix * 8 + 0x0C);
-	myHead.y = memory.readMem<float>(variables.localPlayer + hazedumper::netvars::m_dwBoneMatrix * 8 + 0x1C);
-	myHead.z = memory.readMem<float>(variables.localPlayer + hazedumper::netvars::m_dwBoneMatrix * 8 + 0x2C);
+	DWORD MyBaseBoneMatrix = memory.readMem<DWORD>(variables.localPlayer + hazedumper::netvars::m_dwBoneMatrix);
 
+	myHead.x = memory.readMem<float>(MyBaseBoneMatrix + 0x30 * 8 + 0x0C);
+	myHead.y = memory.readMem<float>(MyBaseBoneMatrix + 0x30 * 8 + 0x1C);
+	myHead.z = memory.readMem<float>(MyBaseBoneMatrix + 0x30 * 8 + 0x2C);
 
+	//std::cout << myHead.x << " " << myHead.y << " " << myHead.z << std::endl;
 
 	for (int i = 0; i < enemies_info.enemieentity.size(); i++)
 	{
 		
 		if ((memory.readMem<int>(enemies_info.enemieentity[i] + hazedumper::netvars::m_iHealth) > 0) && (!memory.readMem<bool>(enemies_info.enemieentity[i] + hazedumper::signatures::m_bDormant)) && (!memory.readMem<bool>(enemies_info.enemieentity[i] + hazedumper::netvars::m_bGunGameImmunity)) && (memory.readMem<bool>(enemies_info.enemieentity[i] + hazedumper::netvars::m_bSpotted)))
 		{
-			enemiesHead.x = memory.readMem<float>(enemies_info.enemieentity[i] + hazedumper::netvars::m_dwBoneMatrix * 8 + 0x0C);
-			enemiesHead.y = memory.readMem<float>(enemies_info.enemieentity[i] + hazedumper::netvars::m_dwBoneMatrix * 8 + 0x1C);
-			enemiesHead.z = memory.readMem<float>(enemies_info.enemieentity[i] + hazedumper::netvars::m_dwBoneMatrix * 8 + 0x2C);
+			DWORD EnemieBaseBoneMatrix = memory.readMem<DWORD>(enemies_info.enemieentity[i] + hazedumper::netvars::m_dwBoneMatrix);
 
-			substract.x = enemiesHead.x - myHead.x;
-			substract.y = enemiesHead.y - myHead.y;
-			substract.z = enemiesHead.z - myHead.z;
+			enemiesHead.x = memory.readMem<float>(EnemieBaseBoneMatrix + 0x30 * 8 + 0x0C);
+			enemiesHead.y = memory.readMem<float>(EnemieBaseBoneMatrix + 0x30 * 8 + 0x1C);
+			enemiesHead.z = memory.readMem<float>(EnemieBaseBoneMatrix + 0x30 * 8 + 0x2C);
+
+			//std::cout << enemiesHead.x << " " << enemiesHead.y << " " << enemiesHead.z << std::endl;
+
+			substract.x = myHead.x - enemiesHead.x;
+			substract.y = myHead.y - enemiesHead.y;
+			substract.z = myHead.z - enemiesHead.z;
+
+			//std::cout << substract.x << " " << substract.y << " " << substract.z << std::endl;
 
 			distance = sqrt(pow(substract.x, 2) + pow(substract.y, 2) + pow(substract.z, 2));
+
+			//std::cout << distance << std::endl;
 
 			if (distance < minDistance)
 			{
@@ -244,12 +253,17 @@ int findClosestEnemy(vector3d& final)
 
 				position = i;
 
-				final.x = substract.x;
-				final.y = substract.y;
-				final.z = substract.z;
+				final->x = substract.x;
+				final->y = substract.y;
+				final->z = substract.z;
+
+				//std::cout << final->x << " " << final->y << " " << final->z << std::endl;
+
 			}
 		}
 	}
+
+	//std::cout << position << std::endl;
 
 	return position;
 
@@ -258,11 +272,15 @@ int findClosestEnemy(vector3d& final)
 void AimBot()
 {
 	vector3d final;
+	final.x = 0;
+	final.y = 0;
+	final.z = 0;
 	vector3d angles;
+	vector3d punch; 
 
-	int position = findClosestEnemy(final);
-
-	std::cout << final.x << " " << final.y << " " << final.z<< std::endl;
+	int position = findClosestEnemy(&final);
+	//std::cout << position << std::endl;
+	//std::cout << final.x << " " << final.y << " " << final.z << std::endl;
 
 
 	if (position >= 0 && position < enemies_info.enemieentity.size())
@@ -270,8 +288,42 @@ void AimBot()
 		float hypo = sqrt(pow(final.x, 2) + pow(final.y, 2));
 
 		angles.x = asinf(final.z / hypo) * (180.0f / PI);
-		angles.y = atanf(final.y / final.x) * (180.0f / PI) + !(((DWORD) & final.x) >> 31 & 1) * 180.0f;
+		angles.y = atanf(final.y / final.x) * (180.0f / PI) + !((*(DWORD*)&final.x) >> 31 & 1) * 180.0f;
 		angles.z = 0.0f;
+
+		std::cout << angles.x << " " << angles.y << " " << angles.z << std::endl;
+
+		punch = memory.readMem<vector3d>(variables.localPlayer + hazedumper::netvars::m_aimPunchAngle);
+
+		if (!enemies_info.ragemode[position])
+		{
+			angles.x -= punch.x * 2.5;
+			angles.y -= punch.y * 2.5;
+			angles.z -= punch.z * 2.5;
+
+			vector3d currentAngles = memory.readMem<vector3d>(variables.clientState + hazedumper::signatures::dwClientState_ViewAngles);
+
+			angles.x -= currentAngles.x;
+			angles.y -= currentAngles.y;
+			angles.z -= currentAngles.z;
+
+			angles.x = angles.x / 90;
+			angles.y = angles.y / 90;
+			angles.z = angles.z / 90;
+
+			angles.x += currentAngles.x;
+			angles.y += currentAngles.y;
+			angles.z += currentAngles.z;
+
+			
+		}
+		else
+		{
+			
+			angles.x -= punch.x * 1.9;
+			angles.y -= punch.y * 1.9;
+			angles.z -= punch.z * 1.9;
+		}
 
 		memory.writeMem<vector3d>(variables.clientState + hazedumper::signatures::dwClientState_ViewAngles, angles);
 	}
@@ -293,7 +345,7 @@ int main()
 
 	variables.Module = memory.getModule(proc, XOR("client_panorama.dll"));
 	variables.engineAddress = memory.getModule(proc, XOR("engine.dll"));
-	variables.clientState = variables.engineAddress + hazedumper::signatures::dwClientState;
+	variables.clientState = memory.readMem<DWORD>(variables.engineAddress + hazedumper::signatures::dwClientState);
 
 	do 
 	{
@@ -302,7 +354,7 @@ int main()
 	}while (variables.localPlayer == NULL);
 	
 
-	while (true)
+	while (!(GetAsyncKeyState(VK_F10) & 1))
 	{
 		variables.ActualTeam = memory.readMem<int>(variables.localPlayer + hazedumper::netvars::m_iTeamNum);
 		
