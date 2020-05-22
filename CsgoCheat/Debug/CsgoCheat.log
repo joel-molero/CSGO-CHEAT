@@ -1,14 +1,17 @@
 ﻿  CsgoCheat.cpp
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(86,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(124,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(227,20): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(286,32): warning C4018: '<': no coinciden signed/unsigned
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(290,36): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(291,55): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(300,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(301,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(302,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(323,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(324,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\CsgoCheat.cpp(325,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-  CsgoCheat.vcxproj -> C:\Users\danie\OneDrive\Desktop\dani\..hacking\CSGO-CHEAT\CsgoCheat\Debug\CsgoCheat.exe
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(86,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(124,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(227,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(286,32): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(290,36): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(291,55): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(300,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(301,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(302,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(323,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(324,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\CsgoCheat.cpp(325,29): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+  MemMan.cpp
+  proc.cpp
+  Generando código...
+  CsgoCheat.vcxproj -> C:\Users\usuario\Desktop\ProyectoChe\CsgoCheat\Debug\CsgoCheat.exe
